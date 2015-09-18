@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>SimuDice App</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>SimuDice App</h1>
+
+<p><em>Author: Daddy The Runner</em></p>
+
+<hr/>
+
+<h2>Description</h2>
+
+<p>The purpose of this shiny app is to explore the probability
+distributions of rolling various combinations of multi-sided
+dice.  The app allows the user to choose the set of dice to
+use for the simulation as well as the number of rolls to
+simulate.</p>
+
+<h2>Dice</h2>
+
+<p>Most people are very familiar with the very common six sided die.
+However, familiar are dice with different number of sides.  There
+are six regular polyhedrons which have the following number of
+sides:  4, 6, 7, 10, 12, 20.</p>
+
+<p>The app allows the user to choose how many of each type of die to
+use in the simulation.</p>
+
+<h2>Simulation Details</h2>
+
+<p>For each simulated roll of the dice, the face value of the dice are
+summed together.  Once conducting the requested number of dice rolls,
+the results are tabulated and compared with the theoretical expected
+results.</p>
+
+<h3>Simulation Parameters</h3>
+
+<ul>
+<li><p><strong>Number of Rolls</strong> - Number of times the dice are rolled in the simulation (1000 - 50,000)</p></li>
+<li><p><strong>Number of <em>n</em> Sided Dice</strong> - The number of dice with <em>n</em> sides (1 - 20)</p></li>
+</ul>
+
+<p><strong>Note:</strong> There must be at least one die in the simulation.  If all
+dice inputs are zero, then the six sided die is reset to 1.</p>
+
+<h3>Outputs</h3>
+
+<h4>Plot</h4>
+
+<p>A graphical depiction of the simulation results.  The bars show the
+total number of times each sum appeared in the simulation.  The line,
+points and wiskers represent the expected simulation results and the
+95% confidence range.</p>
+
+<h4>Summary</h4>
+
+<p>A tabluated depiction of the simulation results.  The columns of the
+table are:</p>
+
+<ul>
+<li><p><strong>Total</strong> - Sum of the dice values</p></li>
+<li><p><strong>Freq</strong> - The number of ways each total value can be obtained given the set of dice rolled</p></li>
+<li><p><strong>Prob</strong> - The probability of getting the given total value on a
+single roll of the set of dice</p></li>
+<li><p><strong>Count</strong> - The expected number of times the given total should be seen for the number of rolls performed</p></li>
+<li><p><strong>Count.Lower</strong> - Lower limit on the expected number of observations for a given total (95% confidence level)</p></li>
+<li><p><strong>Count.Upper</strong> - Upper limit on the expected number of observations for a given total (95% confidence level)</p></li>
+<li><p><strong>Count.Sim</strong> - The actual number of observations in the simulation.</p></li>
+</ul>
+
+<h4>Help</h4>
+
+<p>This help file.</p>
+
+</body>
+
+</html>
