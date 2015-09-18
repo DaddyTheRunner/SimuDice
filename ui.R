@@ -2,6 +2,7 @@
 ## UI Code
 
 require(shiny)
+require(shinyBS)
 
 ## Define some helper functions based on the Bootstrap Style
 
@@ -74,6 +75,7 @@ shinyUI(fluidPage(
     # Simulation Output
     column(8,
       h3("Simulation Results"),
+      bsAlert("msgWarn"),
       tabsetPanel(type="tabs",
         tabPanel("Plot", plotOutput("simPlot")),
         tabPanel("Summary", verbatimTextOutput("simSummary")),

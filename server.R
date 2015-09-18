@@ -2,6 +2,7 @@
 ## Sever Code
 
 require(shiny)
+require(shinyBS)
 
 ## Load the diceTools
 source("diceTools.R")
@@ -38,6 +39,24 @@ shinyServer(function(input, output, clientData, session) {
     else if (max(diceList()) < 1) { result <- TRUE }
     else if (prod(diceList()) > 25000) { result <- TRUE }
     
+    if (result) {
+      msg <- list(
+        p("Input Parameters are predicted to cause excessive",
+          "computation time or there are an invalid number",
+          "of dice"),
+        p("Estimated computation time:  ", prod(diceList())/20000,
+          "seconds."),
+        p("Number of dice:  ", length(diceList())))
+      # msg <- capture.output(cat(sapply(seq(length(msg)), function(x){capture.output(msg[[x]])})))
+      msg <- paste(sapply(seq(length(msg)), function(x){paste(msg[[x]])}))
+      
+      createAlert(session, "msgWarn", alertId = "paramWarn",
+                  title = "Unsafe Parameters",
+                  content = msg, style = "warning", append = FALSE)
+    } else {
+      closeAlert(session, "paramWarn")
+    }
+    
     return(result)
   })
 
@@ -64,12 +83,7 @@ shinyServer(function(input, output, clientData, session) {
   # Generate a table of the simulation results
   output$simSummary <- renderPrint({
     if (is.null(sim())) {
-      # print("Detected a null sim.")
-      cat("Input Parameters are predicted to cause excessive",
-          "\ncomputation time or there are an invalid number of dice",
-          "\n\nEstimated computation time:  ", prod(diceList())/20000,
-          "seconds.",
-          "\n\nNumber of dice:  ", length(diceList()))
+      return()
     } else {
       sim()
     }
