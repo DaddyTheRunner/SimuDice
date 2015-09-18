@@ -7,7 +7,12 @@ require(shinyBS)
 ## Load the diceTools
 source("diceTools.R")
 
-# UnsafeParams <- TRUE
+
+## Create some constants
+
+# Limits the amount of time calculating theoretical results
+# 20,000 ~ 1 second on an AMD Dual-Core C60
+computationLimit <- 50000
 
 
 shinyServer(function(input, output, clientData, session) {
@@ -43,10 +48,11 @@ shinyServer(function(input, output, clientData, session) {
   unsafeParams <- reactive({
     # Start off assuming safe parameters
     result <- FALSE
+    closeAlert(session, "paramWarn")
     
     if (length(diceList()) < 1) { result <- TRUE }
     else if (max(diceList()) < 1) { result <- TRUE }
-    else if (prod(diceList()) > 25000) { result <- TRUE }
+    else if (prod(diceList()) > computationLimit) { result <- TRUE }
     
     if (result) {
       msg <- list(
@@ -60,7 +66,7 @@ shinyServer(function(input, output, clientData, session) {
       msg <- paste(sapply(seq(length(msg)), function(x){paste(msg[[x]])}))
       
       createAlert(session, "msgWarn", alertId = "paramWarn",
-                  title = "Unsafe Parameters",
+                  title = "<b>Unsafe Parameters</b>",
                   content = msg, style = "warning", append = FALSE)
     } else {
       closeAlert(session, "paramWarn")
