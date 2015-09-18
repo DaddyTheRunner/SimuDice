@@ -29,6 +29,15 @@ shinyServer(function(input, output, clientData, session) {
     )
   })
   
+  # Keep track of the aggregation function
+  aggFn <- reactive({
+    switch(input$aggFn,
+           sum = sum,
+           min = min,
+           max = max,
+           range = Range)
+  })
+  
   
   # Check for safe parameters
   unsafeParams <- reactive({
@@ -66,7 +75,8 @@ shinyServer(function(input, output, clientData, session) {
     if (unsafeParams())
       return(NULL)
 
-    runDiceSim(diceList(), input$rollsPerSim, confLevel=0.95)
+    runDiceSim(diceList(), input$rollsPerSim,
+               confLevel=0.95, aggFn = aggFn())
   })
 
   # Generate a plot of the simulation results

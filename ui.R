@@ -20,6 +20,7 @@ infoPanel <- function(title="Panel Title", body="Panel body text.") {
 ## Define some constants
 minDiceCount <- 0
 maxDiceCount <- 10
+funList <- c("sum", "min", "max", "range")
 
 shinyUI(fluidPage(
   theme = "bootstrap.css",
@@ -44,7 +45,8 @@ shinyUI(fluidPage(
                    val=1000, min=1000, max=50000, step=100),
       numericInput("numSims", label="Number of simulations",
                    val=1, min=1, max=1000, step=10),
-      selectInput("aggFn", "Aggregation Function", c("sum", "max"), selected = "sum"),
+      selectInput("aggFn", "Aggregation Function", funList,
+                  selected = "sum"),
       h4("Dice"),
       numericInput("num4D", label="Number of 4 sided dice",
                    val=0, min=minDiceCount, max=maxDiceCount, step=1),
