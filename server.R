@@ -1,6 +1,7 @@
 ## SimuDice
 ## Sever Code
 
+## Load the required libraries
 require(shiny)
 require(shinyBS)
 

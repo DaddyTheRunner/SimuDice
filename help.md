@@ -11,27 +11,56 @@ simulate.
 
 ## Dice
 Most people are very familiar with the very common six sided die.
-However, familiar are dice with different number of sides.  There
-are six regular polyhedrons which have the following number of
-sides:  4, 6, 7, 10, 12, 20.
+However, less familiar are dice with different numbers of sides.
+Dice can be made from regular polyhedrohns.
+There are six regular polyhedrons which have the following numbers
+of sides:  4, 6, 7, 10, 12, 20.
 
 The app allows the user to choose how many of each type of die to
 use in the simulation.
 
 
+## Combining Dice Values
+The traditional method of aggregating the values of multiple dice
+is to simply add all of the values together.  However, there are
+other options for aggregation:  minimum value, maximum value, and
+range (i.e. `max - min`) are a few examples.
+
+The app allows the user to choose the aggregation function used
+for each roll of the dice.
+
+
 ## Simulation Details
 For each simulated roll of the dice, the face value of the dice are
-summed together.  Once conducting the requested number of dice rolls,
-the results are tabulated and compared with the theoretical expected
-results.
+agreggated together using the specified function.  Once done
+conducting the requested number of dice rolls,
+the results are tabulated and compared with the theoretically
+expected results.
 
 ### Simulation Parameters
 - **Number of Rolls** - Number of times the dice are rolled in the simulation (1000 - 50,000)
 
+- **Aggregation Function** - Name of the function used to aggregate the values of the dice on each roll.  (`sum`, `min`, `max`, or
+`range`)
+
 - **Number of _n_ Sided Dice** - The number of dice with _n_ sides (1 - 20)
 
-**Note:** There must be at least one die in the simulation.  If all
-dice inputs are zero, then the six sided die is reset to 1.
+**Note:** As the number of dice increase, the the total number of
+possible dice combinations grows exponentially.  Therefore, the
+app protects against long computation times by roughly estimating
+the computation time required to calculate the theoretical
+expectations.  If the predicted computation time exceeds a
+predetermined threshold (about 2.5 seconds), a warning message
+is displayed and the computation is suspended until the number
+of dice is reduced.
+
+The computation time is impacted by the number of sides on each
+die.  Therefore, the app allows larger numbers of smaller dice.
+
+The theoretical expectations for the summation function can be
+calculated very efficiently using convolution.  Therefore, the
+maximum number of dice for the summation function is significantly
+larger than for the other aggregation function options.
 
 
 ### Outputs
@@ -60,6 +89,9 @@ single roll of the set of dice
 - **Count.Upper** - Upper limit on the expected number of observations for a given total (95% confidence level)
 
 - **Count.Sim** - The actual number of observations in the simulation.
+
+#### Interesting Cases
+A page of recommended simulation settings to try.
 
 #### Help
 This help file.

@@ -1,20 +1,9 @@
 ## SimuDice
 ## UI Code
 
+## Load the required libraries
 require(shiny)
 require(shinyBS)
-
-## Define some helper functions based on the Bootstrap Style
-
-## Generate info panels
-infoPanel <- function(title="Panel Title", body="Panel body text.") {
-  div(class="panel panel-info",
-      div(class="panel-heading",
-          h3(class="panel-title", strong(title))),
-      div(class="panel-body",
-          body)
-  )
-}
 
 
 ## Define some constants
@@ -22,10 +11,10 @@ minDiceCount <- 0
 maxDiceCount <- 10
 funList <- c("sum", "min", "max", "range")
 
+
 shinyUI(fluidPage(
   theme = "bootstrap.css",
-  # br(),
-  
+
   # Title  Banner with graphic
   fluidRow(
     column(2,
@@ -33,18 +22,17 @@ shinyUI(fluidPage(
     column(10,
       h2("SimuDice App"))
   ),
-  # hr(),
-  
+
   # Side panel and main panel layout
   fluidRow(
     
     # Simulation Parameters
     column(4,
       h3("Parameters"),
-      numericInput("rollsPerSim", label="Number rolls per simulation",
+      numericInput("rollsPerSim", label="Number dice rolls",
                    val=1000, min=1000, max=50000, step=100),
-      numericInput("numSims", label="Number of simulations",
-                   val=1, min=1, max=1000, step=10),
+#       numericInput("numSims", label="Number of simulations",
+#                    val=1, min=1, max=1000, step=10),
       selectInput("aggFn", "Aggregation Function", funList,
                   selected = "sum"),
       h4("Dice"),
@@ -60,18 +48,6 @@ shinyUI(fluidPage(
                    val=0, min=minDiceCount, max=maxDiceCount, step=1),
       numericInput("num20D", label="Number of 20 sided dice",
                    val=0, min=minDiceCount, max=maxDiceCount, step=1)
-#       fluidRow(
-#         column(6,
-#           sliderInput("num4D", label=h5("4 sided dice"), min=0, max=20, val=1, step=1),
-#           sliderInput("num6D", label=h5("6 sided dice"), min=0, max=20, val=1, step=1),
-#           sliderInput("num8D", label=h5("8 sided dice"), min=0, max=20, val=1, step=1)
-#         ),
-#         column(6,
-#           sliderInput("num10D", label=h5("10 sided dice"), min=0, max=20, val=1, step=1),
-#           sliderInput("num12D", label=h5("12 sided dice"), min=0, max=20, val=1, step=1),
-#           sliderInput("num20D", label=h5("20 sided dice"), min=0, max=20, val=1, step=1)
-#         )
-#       )
     ),
 
     # Simulation Output
@@ -81,6 +57,7 @@ shinyUI(fluidPage(
       tabsetPanel(type="tabs",
         tabPanel("Plot", plotOutput("simPlot")),
         tabPanel("Summary", verbatimTextOutput("simSummary")),
+        tabPanel("Interesting Cases", includeMarkdown("interesting.md")),
         tabPanel("Help", includeMarkdown("help.md"))
       )
     )
