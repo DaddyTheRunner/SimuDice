@@ -8,7 +8,7 @@ require(shinyBS)
 
 ## Define some constants
 minDiceCount <- 0
-maxDiceCount <- 10
+maxDiceCount <- 20
 funList <- c("sum", "min", "max", "range")
 
 
@@ -36,17 +36,17 @@ shinyUI(fluidPage(
       selectInput("aggFn", "Aggregation Function", funList,
                   selected = "sum"),
       h4("Dice"),
-      numericInput("num4D", label="Number of 4 sided dice",
+      sliderInput("num4D", label="Number of 4 sided dice",
                    val=0, min=minDiceCount, max=maxDiceCount, step=1),
-      numericInput("num6D", label="Number of 6 sided dice",
+      sliderInput("num6D", label="Number of 6 sided dice",
                    val=1, min=minDiceCount, max=maxDiceCount, step=1),
-      numericInput("num8D", label="Number of 8 sided dice",
+      sliderInput("num8D", label="Number of 8 sided dice",
                    val=0, min=minDiceCount, max=maxDiceCount, step=1),
-      numericInput("num10D", label="Number of 10 sided dice",
+      sliderInput("num10D", label="Number of 10 sided dice",
                    val=0, min=minDiceCount, max=maxDiceCount, step=1),
-      numericInput("num12D", label="Number of 12 sided dice",
+      sliderInput("num12D", label="Number of 12 sided dice",
                    val=0, min=minDiceCount, max=maxDiceCount, step=1),
-      numericInput("num20D", label="Number of 20 sided dice",
+      sliderInput("num20D", label="Number of 20 sided dice",
                    val=0, min=minDiceCount, max=maxDiceCount, step=1)
     ),
 

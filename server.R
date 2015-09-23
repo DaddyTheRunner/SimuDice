@@ -51,7 +51,8 @@ shinyServer(function(input, output, clientData, session) {
     result <- FALSE
     closeAlert(session, "paramWarn")
     
-    if (length(diceList()) < 1) { result <- TRUE }
+    if (identical(aggFn(), sum)) { result <- FALSE}
+    else if (length(diceList()) < 1) { result <- TRUE }
     else if (max(diceList()) < 1) { result <- TRUE }
     else if (prod(diceList()) > computationLimit) { result <- TRUE }
     
