@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SimuDice</title>
+  <meta charset="utf-8">
+  <meta name="description" content="SimuDice">
+  <meta name="author" content="Daddy The Runner">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/dice.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>SimuDice</h1>
+    <h2>Simulating Rolling Multi-Sided Dice</h2>
+    <p>Daddy The Runner<br/>Developing Data Products</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style>
+em { font-style: italic }
+strong { font-weight: bold }
+</style>
+
+<h2>Introduction to <em>SimuDice</em></h2>
+
+<ul>
+<li><p><strong>SimuDice</strong> allows you to explore the characteristics of rolling
+collections of dice</p></li>
+<li><p><strong><em>Description:</em></strong></p>
+
+<ul>
+<li>The purpose of this shiny app is to explore the probability
+distributions of rolling various combinations of multi-sided
+dice.  The app allows the user to choose the set of dice to
+use for the simulation as well as the number of rolls to
+simulate.</li>
+</ul></li>
+<li><p><strong><em>Dice Basics</em></strong></p>
+
+<ul>
+<li>The most common/familiar die is a six-sided cube</li>
+<li>Rolling a single die results in a simple uniform distribution</li>
+<li>Rolling two dice (e.g. 2 x 6-sided dice) yields a simple
+triangular distribution</li>
+<li>Dice can be made from any regular polyhedron</li>
+<li>There are six regular polyhedrons with the following sides:
+
+<ul>
+<li>4, 6, 8, 10, 12, 20</li>
+</ul></li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Rolling Multiple Dice</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Rolling multiple dice results in a random sampling of numbers</li>
+<li>These numbers can be combined (or aggregated) into a single
+statistic
+
+<ul>
+<li>The traditional statistic used is a simple summation:
+
+<ul>
+<li>Dice values:  4, 5,  2</li>
+<li><code>sum</code>:  11</li>
+</ul></li>
+<li>Other options include:
+
+<ul>
+<li><code>max</code>:  5</li>
+<li><code>min</code>:  2</li>
+<li><code>range</code>:  3
+
+<ul>
+<li>Where <code>range</code> is defined as <code>max - min</code></li>
+</ul></li>
+</ul></li>
+<li>These non-traditional aggregations produce some interesting
+and complex probability distributions</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sample <em>SimuDice</em> Plot</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Here is a sample plot from <em>SimuDice</em> for a simulation of
+10,000 rolls of three dice:  2 x 6-sided dice and 1 x 12-sided
+die using the <code>range</code> aggregator</li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+<ul>
+<li>The bars show the total number of times each <code>range</code> value
+appeared in the simulation.  The line, points and wiskers
+represent the expected simulation results and the 95% confidence 
+range.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sample <em>SimuDice</em> Plot</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The following is a plot for a simulation of 10,000 rolls of
+5 dice:  4 x 6-sided dice and 1 x 10-sided die using the <code>max</code>
+aggregator</li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Rolling Multiple Dice'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Sample <em>SimuDice</em> Plot'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Sample <em>SimuDice</em> Plot'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
