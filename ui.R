@@ -4,6 +4,7 @@
 ## Load the required libraries
 require(shiny)
 require(shinyBS)
+require(markdown)
 
 
 ## Define some constants
